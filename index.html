@@ -104,40 +104,41 @@ canvas{
 
 <!-- START -->
 <div class="box" id="start">
-<h1>Hey Duggu 💖</h1>
+<h1>Radhe Radhe Duggu 💖</h1>
 
-<p>Ye sirf ek link nahi hai… thoda sa effort hai 🥺</p>
-<p>End tak zaroor dekhna… waha asli surprise hai 💫</p>
+<p>meri Pyari Duggu k liye ek pyara sa surprise hai </p>
+<p>last main aap k liye pyara sa surprise hai, don't quite 🥺</p>
+<p>janta hu bahut acha to nahi bana hai pr bs mere efforts ki liye khel liye 🤒💫</p>
 
-<p>🎧 Headphones laga lijyea</p>
+<p>Headphones laga lijyea 🎧</p>
 
 <button onclick="startGame()">Start 🎁</button>
 </div>
 
 <!-- LEVELS -->
 <div class="box" id="level1" style="display:none;">
-<h2>Password 🤭</h2>
+<h2> Enter Password 🤭</h2>
 <input id="pass">
 <button onclick="check1()">Submit</button>
 <p id="msg1"></p>
 </div>
 
 <div class="box" id="level2" style="display:none;">
-<h2>Night walk pasand hai? 🌙</h2>
+<h2> Mere saath Night walk pasand hai? 🌙</h2>
 <input id="ans2">
 <button onclick="check2()">Submit</button>
 <p id="msg2"></p>
 </div>
 
 <div class="box" id="level3" style="display:none;">
-<h2>Ek nickname batao 💭</h2>
+<h2> Duggu ke alawa Ek nickname bataiyea jo sirf main bulata hu 💭</h2>
 <input id="ans3">
 <button onclick="check3()">Submit</button>
 <p id="msg3"></p>
 </div>
 
 <div class="box" id="level4" style="display:none;">
-<h2>Sabse jyada pyar kaun karta hai? ❤️</h2>
+<h2> Aap se Sabse jyada pyar kaun karta hai? ❤️</h2>
 <input id="ans4">
 <button onclick="check4()">Submit</button>
 <p id="msg4"></p>
@@ -148,19 +149,21 @@ canvas{
 <h2>🎉 Happy Birthday Duggu 🎂</h2>
 
 <p>
-Aapke Buggu ki taraf se 🥰<br><br>
+Aapke Buggu ki taraf se ek chota sa surprise 🥰<br><br>
 
-Thank you meri life me aane ke liye ❤️<br><br>
+jb se aap aai hain meri life main sb kuch change sa ho gaya hai<br><br> 
+    
+Thank you aapka meri life me aane ko itna khoobsurat liye ❤️<br><br>
+    
+Aapke baad sab better ho gaya or main bhi pahle se bahut bhetar ban gaya 💫<br><br>
 
-Aapke baad sab better ho gaya… main bhi 💫<br><br>
+Main promise karta hu… main hamesha aisa hi rahunga, aur itna hi pyaar karta rahunga…💖<br><br>
 
-Main hamesha aapse itna hi pyaar karta rahunga 💖<br><br>
-
-Har pal… dil sirf aapke liye dhadkega ❤️<br><br>
+Har ek saal, har ek mahina, har ek hafta, har ek din… har ek ghanta aur har ek pal… mera dil bas aapke naam se dhadkega  ❤️<br><br>
 
 <b>I LOVE YOU 3000 ❤️</b><br><br>
 
-<i>Jeet hamesha aapki hi hoti hai 💫</i>
+<i>aur sach kahu, agar ye sab ek game tha, to main shuru se hi haar chuka tha… kyunki jeet to hamesha aapki hi hoti hai 💫</i>
 </p>
 
 </div>
@@ -184,7 +187,7 @@ document.getElementById(t).style.display="block";
 
 function check1(){
 if(pass.value==="1308"){next("level1","level2")}
-else{msg1.innerText="Wrong 😭"}
+else{msg1.innerText="Galat jawab 😭"}
 }
 
 function check2(){
@@ -200,7 +203,7 @@ if(v.includes(a)){next("level3","level4")}
 else{
 attempts++;
 msg3.innerText=attempts==1?
-"Aapko yaad nahi 😭":"Phir galat 😭";
+"Aapko yebhi yaad nahi 😭":"Phir se galat 😭";
 }
 }
 
@@ -209,7 +212,7 @@ let a=ans4.value.toLowerCase();
 if(a==="aap"||a==="buggu"||a==="arjun"){
 next("level4","final");
 effects();
-}else{msg4.innerText="Galat 😭"}
+}else{msg4.innerText="Galat jawab 😭"}
 }
 
 /* ✨ EFFECTS */
