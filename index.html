@@ -1,188 +1,264 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>For Duggu 💖</title>
-    <style>
-        body {
-            text-align: center;
-            font-family: Arial;
-            background: linear-gradient(to right, #ffdde1, #ee9ca7);
-            color: #333;
-        }
-        .box {
-            margin-top: 60px;
-            padding: 20px;
-        }
-        input, button {
-            padding: 10px;
-            margin: 10px;
-            border-radius: 10px;
-            border: none;
-        }
-        button {
-            background: #ff4d6d;
-            color: white;
-            cursor: pointer;
-        }
-    </style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Duggu 💖</title>
+
+<style>
+body {
+    margin:0;
+    text-align:center;
+    font-family: Arial;
+    color:#333;
+    font-size:20px;
+    overflow-x:hidden;
+
+    background: linear-gradient(-45deg,#ff9a9e,#fad0c4,#ffdde1);
+    background-size:400% 400%;
+    animation: bg 8s infinite;
+}
+
+@keyframes bg {
+    0%{background-position:0%}
+    50%{background-position:100%}
+    100%{background-position:0%}
+}
+
+.box {
+    margin-top:60px;
+    padding:20px;
+    animation:fade 1s ease;
+}
+
+@keyframes fade {
+    from{opacity:0;transform:translateY(20px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+h1{font-size:32px}
+h2{font-size:26px}
+
+input,button{
+    padding:12px;
+    margin:10px;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+    width:80%;
+    max-width:300px;
+}
+
+button{
+    background:#ff4d6d;
+    color:white;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+/* ✨ STARS */
+.star{
+    position:fixed;
+    width:4px;
+    height:4px;
+    background:white;
+    border-radius:50%;
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    from{transform:translateY(-10px)}
+    to{transform:translateY(100vh)}
+}
+
+/* 💖 HEARTS */
+.heart{
+    position:fixed;
+    font-size:20px;
+    animation:float 5s linear infinite;
+}
+
+@keyframes float{
+    from{transform:translateY(100vh)}
+    to{transform:translateY(-10vh)}
+}
+
+/* 🎉 CONFETTI */
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    pointer-events:none;
+}
+
+</style>
 </head>
 
 <body>
 
-<!-- MUSIC -->
 <audio id="bgMusic" loop>
-    <source src="music.mp3" type="audio/mpeg">
+<source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <!-- START -->
 <div class="box" id="start">
-    <h1>Hey Duggu 💖</h1>
+<h1>Hey Duggu 💖</h1>
 
-    <p>Shayad ye ek normal link lage… par iske andar jo hai na, wo thoda special hai 🥺</p>
-    <p>Isme thoda sa time lagega… thoda sa patience bhi chahiye hoga…</p>
-    <p>Par trust me… end tak pahunchne ke baad, aap smile kiye bina nahi reh pyengi ❤️</p>
+<p>Ye sirf ek link nahi hai… thoda sa effort hai 🥺</p>
+<p>End tak zaroor dekhna… waha asli surprise hai 💫</p>
 
-    <p>
-        Ek chhoti si request hai 🎧 <br><br>
-        Please headphones laga lijyea… aur thoda sa dil se dekhiyega 💫
-    </p>
+<p>🎧 Headphones laga lijyea</p>
 
-    <button onclick="startGame()">Start Your Surprise 🎁</button>
-    <p style="font-size:12px;">(Warning: Isme thoda sa pyaar zyada hai 🤭)</p>
+<button onclick="startGame()">Start 🎁</button>
 </div>
 
-<!-- LEVEL 1 -->
+<!-- LEVELS -->
 <div class="box" id="level1" style="display:none;">
-    <h2>Enter Password 🤭</h2>
-    <input type="text" id="pass">
-    <br>
-    <button onclick="check1()">Submit</button>
-    <p id="msg1"></p>
+<h2>Password 🤭</h2>
+<input id="pass">
+<button onclick="check1()">Submit</button>
+<p id="msg1"></p>
 </div>
 
-<!-- LEVEL 2 -->
 <div class="box" id="level2" style="display:none;">
-    <h2>Kya aapko mere saath nightwalk pasand hai? 🌙</h2>
-    <input type="text" id="ans2" placeholder="haan / yes">
-    <br>
-    <button onclick="check2()">Submit</button>
-    <p id="msg2"></p>
+<h2>Night walk pasand hai? 🌙</h2>
+<input id="ans2">
+<button onclick="check2()">Submit</button>
+<p id="msg2"></p>
 </div>
 
-<!-- LEVEL 3 -->
 <div class="box" id="level3" style="display:none;">
-    <h2>Duggu ke alawa koi ek nickname bataye jo sirf main aapko bulata hu 💭</h2>
-    <input type="text" id="ans3">
-    <br>
-    <button onclick="check3()">Submit</button>
-    <p id="msg3"></p>
+<h2>Ek nickname batao 💭</h2>
+<input id="ans3">
+<button onclick="check3()">Submit</button>
+<p id="msg3"></p>
 </div>
 
-<!-- LEVEL 4 -->
 <div class="box" id="level4" style="display:none;">
-    <h2>Aapko sabse jyada kaun pyar karta hai? ❤️</h2>
-    <input type="text" id="ans4">
-    <br>
-    <button onclick="check4()">Submit</button>
-    <p id="msg4"></p>
+<h2>Sabse jyada pyar kaun karta hai? ❤️</h2>
+<input id="ans4">
+<button onclick="check4()">Submit</button>
+<p id="msg4"></p>
 </div>
 
 <!-- FINAL -->
 <div class="box" id="final" style="display:none;">
-    <h2>🎉 Happy Birthday Duggu 🎂</h2>
+<h2>🎉 Happy Birthday Duggu 🎂</h2>
 
-    <p>
-        Aapke Buggu ki taraf se ek chhota sa surprise… 🥰 <br><br>
+<p>
+Aapke Buggu ki taraf se 🥰<br><br>
 
-        God bless mera bachaa 🤞🧿💫 <br><br>
+Thank you meri life me aane ke liye ❤️<br><br>
 
-        Sach bolu… meri zindagi mein aane ke liye thank you ❤️ <br><br>
+Aapke baad sab better ho gaya… main bhi 💫<br><br>
 
-        Aapke aane ke baad sab kuch thoda sa alag, thoda sa better ho gaya hai…  
-        aur shayad main bhi 💫 <br><br>
+Main hamesha aapse itna hi pyaar karta rahunga 💖<br><br>
 
-        Main promise karta hu…  
-        main hamesha aisa hi rahunga,  
-        aur itna hi pyaar karta rahunga… <br><br>
+Har pal… dil sirf aapke liye dhadkega ❤️<br><br>
 
-        Har ek saal, har ek mahina,  
-        har ek hafta, har ek din…  
-        har ek ghanta aur har ek pal…  
-        mera dil bas aapke naam se dhadkega 💖 <br><br>
+<b>I LOVE YOU 3000 ❤️</b><br><br>
 
-        Aap hamesha khush raho… meri pyari Duggu 💕 <br><br>
+<i>Jeet hamesha aapki hi hoti hai 💫</i>
+</p>
 
-        <b>I LOVE YOU 3000 ❤️</b><br><br>
-
-        <i>…aur sach kahu,  
-        agar ye sab ek game tha,  
-        to main shuru se hi haar chuka tha…  
-        kyunki jeet to hamesha aapki hi hoti hai 💫</i>
-    </p>
 </div>
 
 <script>
-let attempts = 0;
+let attempts=0;
 
-function startGame() {
-    document.getElementById("start").style.display = "none";
-    document.getElementById("level1").style.display = "block";
+function startGame(){
+document.getElementById("start").style.display="none";
+document.getElementById("level1").style.display="block";
 
-    // PLAY MUSIC AFTER CLICK
-    let music = document.getElementById("bgMusic");
-    music.play();
+let m=document.getElementById("bgMusic");
+m.volume=0.5;
+m.play();
 }
 
-function next(from, to) {
-    document.getElementById(from).style.display = "none";
-    document.getElementById(to).style.display = "block";
+function next(f,t){
+document.getElementById(f).style.display="none";
+document.getElementById(t).style.display="block";
 }
 
-// Level 1
-function check1() {
-    let pass = document.getElementById("pass").value;
-    if(pass === "1308") {
-        next("level1", "level2");
-    } else {
-        document.getElementById("msg1").innerText = "Wrong password 😭";
-    }
+function check1(){
+if(pass.value==="1308"){next("level1","level2")}
+else{msg1.innerText="Wrong 😭"}
 }
 
-// Level 2
-function check2() {
-    let ans = document.getElementById("ans2").value.toLowerCase();
-    if(ans === "haan" || ans === "haa" || ans === "yes") {
-        next("level2", "level3");
-    } else {
-        document.getElementById("msg2").innerText = "Phir se sochiyea 😭";
-    }
+function check2(){
+let a=ans2.value.toLowerCase();
+if(a==="haan"||a==="yes"){next("level2","level3")}
+else{msg2.innerText="Phir se sochiye 😭"}
 }
 
-// Level 3
-function check3() {
-    let ans = document.getElementById("ans3").value.toLowerCase();
-    let valid = ["aishu","rapunzel","miss marvel","roshni"];
-
-    if(valid.includes(ans)) {
-        next("level3", "level4");
-    } else {
-        attempts++;
-        if(attempts === 1) {
-            document.getElementById("msg3").innerText = "Aapko itna bhi nahi yaad 😭 try again";
-        } else {
-            document.getElementById("msg3").innerText = "Phir se galat jawab 😭";
-        }
-    }
+function check3(){
+let a=ans3.value.toLowerCase();
+let v=["aishu","rapunzel","miss marvel","roshni"];
+if(v.includes(a)){next("level3","level4")}
+else{
+attempts++;
+msg3.innerText=attempts==1?
+"Aapko yaad nahi 😭":"Phir galat 😭";
+}
 }
 
-// Level 4
-function check4() {
-    let ans = document.getElementById("ans4").value.toLowerCase();
-    if(ans === "aap" || ans === "buggu" || ans === "arjun") {
-        next("level4", "final");
-    } else {
-        document.getElementById("msg4").innerText = "Galat jawab 😭";
-    }
+function check4(){
+let a=ans4.value.toLowerCase();
+if(a==="aap"||a==="buggu"||a==="arjun"){
+next("level4","final");
+effects();
+}else{msg4.innerText="Galat 😭"}
+}
+
+/* ✨ EFFECTS */
+function effects(){
+
+/* stars */
+for(let i=0;i<50;i++){
+let s=document.createElement("div");
+s.className="star";
+s.style.left=Math.random()*100+"%";
+s.style.animationDuration=(Math.random()*3+2)+"s";
+document.body.appendChild(s);
+}
+
+/* hearts */
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💖";
+h.style.left=Math.random()*100+"%";
+document.body.appendChild(h);
+
+setTimeout(()=>h.remove(),5000);
+},500);
+
+/* confetti */
+let c=document.createElement("canvas");
+document.body.appendChild(c);
+let ctx=c.getContext("2d");
+
+c.width=innerWidth;
+c.height=innerHeight;
+
+let pieces=[];
+for(let i=0;i<100;i++){
+pieces.push({x:Math.random()*c.width,y:Math.random()*c.height});
+}
+
+setInterval(()=>{
+ctx.clearRect(0,0,c.width,c.height);
+ctx.fillStyle="pink";
+
+pieces.forEach(p=>{
+ctx.fillRect(p.x,p.y,5,5);
+p.y+=2;
+if(p.y>c.height)p.y=0;
+});
+},30);
+
 }
 </script>
 
