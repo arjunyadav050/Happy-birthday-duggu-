@@ -29,7 +29,8 @@
 
 <body>
 
-<audio autoplay loop>
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
@@ -70,7 +71,7 @@
 
 <!-- LEVEL 3 -->
 <div class="box" id="level3" style="display:none;">
-    <h2>duggu k alawa koi or nicknames ek batiyea jo sirf main aapko bulata hu </h2>
+    <h2>Duggu ke alawa koi ek nickname bataye jo sirf main aapko bulata hu 💭</h2>
     <input type="text" id="ans3">
     <br>
     <button onclick="check3()">Submit</button>
@@ -98,7 +99,7 @@
         Sach bolu… meri zindagi mein aane ke liye thank you ❤️ <br><br>
 
         Aapke aane ke baad sab kuch thoda sa alag, thoda sa better ho gaya hai…  
-        aur shayad main bhi  <br><br>
+        aur shayad main bhi 💫 <br><br>
 
         Main promise karta hu…  
         main hamesha aisa hi rahunga,  
@@ -126,6 +127,10 @@ let attempts = 0;
 function startGame() {
     document.getElementById("start").style.display = "none";
     document.getElementById("level1").style.display = "block";
+
+    // PLAY MUSIC AFTER CLICK
+    let music = document.getElementById("bgMusic");
+    music.play();
 }
 
 function next(from, to) {
@@ -149,14 +154,14 @@ function check2() {
     if(ans === "haan" || ans === "haa" || ans === "yes") {
         next("level2", "level3");
     } else {
-        document.getElementById("msg2").innerText = "fir se sochiyea 😭";
+        document.getElementById("msg2").innerText = "Phir se sochiyea 😭";
     }
 }
 
 // Level 3
 function check3() {
     let ans = document.getElementById("ans3").value.toLowerCase();
-    let valid = ["aishu","rupanzel","miss marvel","roshni"];
+    let valid = ["aishu","rapunzel","miss marvel","roshni"];
 
     if(valid.includes(ans)) {
         next("level3", "level4");
@@ -182,4 +187,4 @@ function check4() {
 </script>
 
 </body>
-    </html>
+</html>
