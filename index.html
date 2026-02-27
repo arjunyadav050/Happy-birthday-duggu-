@@ -1,96 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Duggu 💖</title>
+<title>For My Roshni ❤️</title>
 
 <style>
 body {
-    margin:0;
-    text-align:center;
-    font-family: Arial;
-    color:#333;
-    font-size:20px;
-    overflow-x:hidden;
-
-    background: linear-gradient(-45deg,#ff9a9e,#fad0c4,#ffdde1);
-    background-size:400% 400%;
-    animation: bg 8s infinite;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: black;
+  color: white;
+  text-align: center;
+  overflow: hidden;
 }
 
-@keyframes bg {
-    0%{background-position:0%}
-    50%{background-position:100%}
-    100%{background-position:0%}
+h1 {
+  font-size: 28px;
+  margin-top: 50px;
 }
 
-.box {
-    margin-top:60px;
-    padding:20px;
-    animation:fade 1s ease;
+button {
+  padding: 12px 20px;
+  font-size: 18px;
+  margin: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
 }
 
-@keyframes fade {
-    from{opacity:0;transform:translateY(20px)}
-    to{opacity:1;transform:translateY(0)}
+.yes { background: #ff4d6d; color: white; }
+.no { background: gray; color: white; }
+
+.hidden { display: none; }
+
+/* Floating stars */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  animation: float 5s linear infinite;
 }
 
-h1{font-size:32px}
-h2{font-size:26px}
-
-input,button{
-    padding:12px;
-    margin:10px;
-    border:none;
-    border-radius:12px;
-    font-size:18px;
-    width:80%;
-    max-width:300px;
+@keyframes float {
+  from { transform: translateY(100vh); opacity: 1; }
+  to { transform: translateY(-10vh); opacity: 0; }
 }
 
-button{
-    background:#ff4d6d;
-    color:white;
-    transition:0.3s;
+/* Confetti */
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: red;
+  animation: fall 3s linear infinite;
 }
 
-button:hover{
-    transform:scale(1.1);
-}
-
-/* ✨ STARS */
-.star{
-    position:fixed;
-    width:4px;
-    height:4px;
-    background:white;
-    border-radius:50%;
-    animation:fall linear infinite;
-}
-
-@keyframes fall{
-    from{transform:translateY(-10px)}
-    to{transform:translateY(100vh)}
-}
-
-/* 💖 HEARTS */
-.heart{
-    position:fixed;
-    font-size:20px;
-    animation:float 5s linear infinite;
-}
-
-@keyframes float{
-    from{transform:translateY(100vh)}
-    to{transform:translateY(-10vh)}
-}
-
-/* 🎉 CONFETTI */
-canvas{
-    position:fixed;
-    top:0;
-    left:0;
-    pointer-events:none;
+@keyframes fall {
+  from { transform: translateY(-10vh); }
+  to { transform: translateY(100vh); }
 }
 
 </style>
@@ -98,170 +68,76 @@ canvas{
 
 <body>
 
-<audio id="bgMusic" loop>
-<source src="music.mp3" type="audio/mpeg">
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- START -->
-<div class="box" id="start">
-<h1>Radhe Radhe Duggu 💖</h1>
-
-<p>meri Pyari Duggu k liye ek pyara sa surprise hai </p>
-<p>last main aap k liye pyara sa surprise hai, don't quite 🥺</p>
-<p>janta hu bahut acha to nahi bana hai pr bs mere efforts ki liye khel liye 🤒💫</p>
-
-<p>Headphones laga lijyea 🎧</p>
-
-<button onclick="startGame()">Start 🎁</button>
+<div id="start">
+  <h1>Ek chhota sa surprise hai… 💌</h1>
+  <button class="yes" onclick="next(1)">Start</button>
 </div>
 
-<!-- LEVELS -->
-<div class="box" id="level1" style="display:none;">
-<h2> Enter Password 🤭</h2>
-<input id="pass">
-<button onclick="check1()">Submit</button>
-<p id="msg1"></p>
+<div id="q1" class="hidden">
+  <h1>Kya aapko mere saath night walk pasand hai? 🌙</h1>
+  <button class="yes" onclick="checkLove()">Haa</button>
+  <button class="yes" onclick="next(2)">Bahut jyada haa ❤️</button>
 </div>
 
-<div class="box" id="level2" style="display:none;">
-<h2> Mere saath Night walk pasand hai? 🌙</h2>
-<input id="ans2">
-<button onclick="check2()">Submit</button>
-<p id="msg2"></p>
+<div id="q2" class="hidden">
+  <h1>Shaam ko walk pe chale? 😚</h1>
+  <button class="yes" onclick="next(3)">Yes</button>
+  <button class="no" id="noBtn">No</button>
 </div>
 
-<div class="box" id="level3" style="display:none;">
-<h2> Duggu ke alawa Ek nickname bataiyea jo sirf main bulata hu 💭</h2>
-<input id="ans3">
-<button onclick="check3()">Submit</button>
-<p id="msg3"></p>
-</div>
-
-<div class="box" id="level4" style="display:none;">
-<h2> Aap se Sabse jyada pyar kaun karta hai? ❤️</h2>
-<input id="ans4">
-<button onclick="check4()">Submit</button>
-<p id="msg4"></p>
-</div>
-
-<!-- FINAL -->
-<div class="box" id="final" style="display:none;">
-<h2>🎉 Happy Birthday Duggu 🎂</h2>
-
-<p>
-Aapke Buggu ki taraf se ek chota sa surprise 🥰<br><br>
-
-jb se aap aai hain meri life main sb kuch change sa ho gaya hai<br><br> 
-    
-Thank you aapka meri life me aane ko itna khoobsurat liye ❤️<br><br>
-    
-Aapke baad sab better ho gaya or main bhi pahle se bahut bhetar ban gaya 💫<br><br>
-
-Main promise karta hu… main hamesha aisa hi rahunga, aur itna hi pyaar karta rahunga…💖<br><br>
-
-Har ek saal, har ek mahina, har ek hafta, har ek din… har ek ghanta aur har ek pal… mera dil bas aapke naam se dhadkega  ❤️<br><br>
-
-<b>I LOVE YOU 3000 ❤️</b><br><br>
-
-<i>aur sach kahu, agar ye sab ek game tha, to main shuru se hi haar chuka tha… kyunki jeet to hamesha aapki hi hoti hai 💫</i>
-</p>
-
+<div id="final" class="hidden">
+  <h1>Happy Birthday My Roshni ❤️🎉</h1>
+  <p>
+    Tum meri zindagi ka sabse khoobsurat hissa ho…<br><br>
+    Shayad main perfect nahi hoon, par tumhare liye mera pyaar hamesha pure rahega…<br><br>
+    Aur aaj ka din… sirf tumhare naam 💖
+  </p>
 </div>
 
 <script>
-let attempts=0;
+function next(step) {
+  document.querySelectorAll("div").forEach(d => d.classList.add("hidden"));
 
-function startGame(){
-document.getElementById("start").style.display="none";
-document.getElementById("level1").style.display="block";
-
-let m=document.getElementById("bgMusic");
-m.volume=0.5;
-m.play();
+  if(step === 1) document.getElementById("q1").classList.remove("hidden");
+  if(step === 2) document.getElementById("q2").classList.remove("hidden");
+  if(step === 3) {
+    document.getElementById("final").classList.remove("hidden");
+    startEffects();
+  }
 }
 
-function next(f,t){
-document.getElementById(f).style.display="none";
-document.getElementById(t).style.display="block";
+function checkLove() {
+  alert("Bas haa? 😑");
 }
 
-function check1(){
-if(pass.value==="1308"){next("level1","level2")}
-else{msg1.innerText="Galat jawab 😭"}
-}
-
-function check2(){
-let a=ans2.value.toLowerCase();
-if(a==="haan"||a==="ha"||a==="haa"||a==="yes"){next("level2","level3")}
-else{msg2.innerText="Phir se sochiye 😭"}
-}
-
-function check3(){
-let a=ans3.value.toLowerCase();
-let v=["aishu","rapunzel","miss marvel","roshni"];
-if(v.includes(a)){next("level3","level4")}
-else{
-attempts++;
-msg3.innerText=attempts==1?
-"Aapko yebhi yaad nahi 😭":"Phir se galat 😭";
-}
-}
-
-function check4(){
-let a=ans4.value.toLowerCase();
-if(a==="aap"||a==="buggu"||a==="arjun"){
-next("level4","final");
-effects();
-}else{msg4.innerText="Galat jawab 😭"}
-}
-
-/* ✨ EFFECTS */
-function effects(){
-
-/* stars */
-for(let i=0;i<50;i++){
-let s=document.createElement("div");
-s.className="star";
-s.style.left=Math.random()*100+"%";
-s.style.animationDuration=(Math.random()*3+2)+"s";
-document.body.appendChild(s);
-}
-
-/* hearts */
-setInterval(()=>{
-let h=document.createElement("div");
-h.className="heart";
-h.innerHTML="💖";
-h.style.left=Math.random()*100+"%";
-document.body.appendChild(h);
-
-setTimeout(()=>h.remove(),5000);
-},500);
-
-/* confetti */
-let c=document.createElement("canvas");
-document.body.appendChild(c);
-let ctx=c.getContext("2d");
-
-c.width=innerWidth;
-c.height=innerHeight;
-
-let pieces=[];
-for(let i=0;i<100;i++){
-pieces.push({x:Math.random()*c.width,y:Math.random()*c.height});
-}
-
-setInterval(()=>{
-ctx.clearRect(0,0,c.width,c.height);
-ctx.fillStyle="pink";
-
-pieces.forEach(p=>{
-ctx.fillRect(p.x,p.y,5,5);
-p.y+=2;
-if(p.y>c.height)p.y=0;
+let noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", () => {
+  noBtn.style.position = "absolute";
+  noBtn.style.left = Math.random()*80 + "%";
+  noBtn.style.top = Math.random()*80 + "%";
 });
-},30);
 
+/* Effects */
+function startEffects() {
+  for(let i=0; i<50; i++) {
+    let star = document.createElement("div");
+    star.className = "star";
+    star.style.left = Math.random()*100 + "%";
+    star.style.animationDuration = (Math.random()*3+2) + "s";
+    document.body.appendChild(star);
+  }
+
+  for(let i=0; i<30; i++) {
+    let c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random()*100 + "%";
+    c.style.background = ["red","yellow","blue","pink"][Math.floor(Math.random()*4)];
+    document.body.appendChild(c);
+  }
 }
 </script>
 
